@@ -27,13 +27,13 @@ m = 70;
 h = 1.8; 
 dt = 0.01;  
 % iterations
-N = 100; 
+N = 1000; 
 
 x_distance = 101.6; 
 
 % Loops over Theta to figure out best value using evolver
-theta = linspace(10,80, 100);
-theta2 = linspace(10,80,100);
+theta = linspace(30,80, 1000);
+theta2 = linspace(10,60,1000);
 
 % Initialize the best x 
 bestx = 0;
@@ -47,8 +47,8 @@ for n = 1:length(theta)
    
     h = x_distance*sind(theta(n)); 
 
-    v1 = sqrt((2*m*g*h - 2*mu*m*g*cosd(theta(n))*(h/sind(theta(n)))) ...
-        /(m+p*A*C*(h/sind(theta(n)))));
+    v1 = sqrt((2*m*g*h - 2*mu*m*g.*cosd(theta(n)).*(h./sind(theta(n)))) ...
+        ./(m+p.*A.*C.*(h./sind(theta(n)))));
 
     %% Part 1b
 
@@ -57,9 +57,10 @@ for n = 1:length(theta)
     % second height, h2... we just arbitrarily assigned it as 20)
     h2 = 20;
     fun = @(q) h2./sqrt(1+4.*q.^2);
-    L = integral(fun, 0, h2/tan(theta(n)));
+    L = integral(fun, 0, h2./tan(theta(n)));
+    % L = integral(h2./sqrt(1+4.*x.^2)), 0, (h2./tan(theta)))
 
-    v2 = sqrt((2*m*g*h2 - 2*mu*m*g*cosd(theta(n))*abs(L))./(m+p*A*C*L)) + v1;
+    v2 = sqrt((2.*m.*g.*h2 - 2.*mu.*m.*g.*cosd(theta(n)).*L)./(m+p.*A.*C.*L))+v1;
     % Reconsider this equation... considering the way we do conservation of
     % potential energy... where would we consider v1 cuz there is kinetic
     % energy @ this switch
@@ -67,24 +68,24 @@ for n = 1:length(theta)
     %% Part 1 c
 
 
-    num = m*v2^2 - 2*m*g*h2 - C*p*A*v2^2*(h2/sind(theta2(m))) ...
-        - 2*mu*m*g*cosd(theta(n))*(h2./sind(theta(n)));
+    num = m.*v2.^2 - 2.*m.*g.*h2 - C.*p.*A.*v2.^2.*(h2./sind(theta2(m))) ...
+        - 2.*mu.*m.*g.*cosd(theta(n)).*(h2./sind(theta(n)));
 
     v3 = sqrt(num/m);
 
     
     % Using the BSA equation, except divided by 2
-    A = (sqrt(m*h/3600))/2; 
+    A = (sqrt(m.*h/3600))./2; 
    
-    D = (p*C*A)/2;
+    D = (p.*C.*A)./2;
    
     % time step
 
     % define initial conditions
     x0 = 0;
     y0 = 5; 
-    vx0 = v3*cosd(theta2(m));
-    vy0 = v3*sind(theta2(m));
+    vx0 = v3.*cosd(theta2(m));
+    vy0 = v3.*sind(theta2(m));
 
 
     % define data arrays
