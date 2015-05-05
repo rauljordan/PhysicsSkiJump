@@ -136,18 +136,15 @@ for n = 1:length(theta)
         % theta 2 by optimizing the system
         if y(i+1) < 0 
              i = N;
-             j = j + 1;
         else 
              i = i + 1;
-             j = j + 1;
         end
+        
         if (x(i) > bestx)
             bestx = x(i);
             bestn = n;
-            bestj = j;
         end
-        % At the end of the loop, we simply increase i by 1
-        i = i + 1;
+        
     end
     
     
@@ -158,8 +155,20 @@ end
 % From our system evolver, we use the best indeces we calculated before and
 % now obtain our best values which match what we were expecting before.
 best_theta = theta(bestn); 
-best_theta2 = theta2(bestm);
+best_theta2 = theta2(bestn);
 
 fprintf('The best value for theta is%7.3f and for theta2 is%7.3f\n',...
     best_theta,best_theta2);
+
+% Now we obtain the value of d matching the bestx we found from our
+% looping. From our model, we see that d can be expressed as 
+% cosd(theta) = bestx/d so d = bestx / cosd(theta)
+d = bestx / cosd(best_theta);
+fprintf('The value of d is%7.3f\n', d);
+
+plot(x,y);
+
+
+
+
 
