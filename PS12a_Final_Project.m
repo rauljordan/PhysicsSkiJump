@@ -2,7 +2,7 @@
 % Final Project
 close all
 clear all
-
+clc
 %% Part 1a
 
 C = 1.1;
@@ -43,7 +43,7 @@ bestn = 1;
 bestm = 1;
 
 for n = 1:length(theta)
-    for m = 1:length(theta2)
+    for j = 1:length(theta)
    
     h = x_distance*sind(theta(n)); 
 
@@ -68,9 +68,9 @@ for n = 1:length(theta)
 
 
     num = m*v2^2 - 2*m*g*h2 - C*p*A*v2^2*(h2/sind(theta2(m))) ...
-        - 2*mu*m*g*cosd(theta2(m))*(h2./sind(theta2(m)));
+        - 2*mu*m*g*cosd(theta(n))*(h2./sind(theta(n)));
 
-    v3 = sqrt(num/m);
+    v3 = sqrt(abs(num)/m);
 
     
     % Using the BSA equation, except divided by 2
@@ -83,16 +83,16 @@ for n = 1:length(theta)
     % define initial conditions
     x0 = 0;
     y0 = 5; 
-    vx0 = v3*cosd(theta2(m));
-    vy0 = v3*sind(theta2(m));
+    vx0 = v3*cosd(theta2(j));
+    vy0 = v3*sind(theta2(j));
 
 
     % define data arrays
     
-    x = zeros(N,N); 
-    x(n, m) = x0;
-    y = zeros(N,N);
-    y(n,m) = y0;
+    x = zeros(1,N); 
+    x(n) = x0;
+    y = zeros(1,N);
+    y(n) = y0;
     vx = zeros(N); 
     vx(1) = vx0;
     vy = zeros(N); 
@@ -103,27 +103,28 @@ for n = 1:length(theta)
 
     while i < N
         ax = -(D/m)*v3*vx(i);
-        vx(i+1) = vx(i) + ax.*dt;
-        x(i+1) = x(i,i) + vx(i).*dt + 0.5.*ax.*dt.^2;
+        vx(i+1) = vx(i) + ax*dt;
+        x(i+1) = x(i) + vx(i)*dt + 0.5*ax*dt^2;
         ay = -g - ((D/m)*v3*vy(i));
-        vy(i+1) = vy(i) + ay.*dt;
-        y(i+1,i+1) = y(i) + vy(i).*dt + 0.5.*ay.*dt.^2;
+        vy(i+1) = vy(i) + ay*dt;
+        y(i+1) = y(i) + vy(i)*dt + 0.5*ay*dt^2;
 
-        if y(i+1, i+1) < 0 
+        if y(i+1) < 0 
              i = N;
              j = j + 1;
         else 
              i = i + 1;
              j = j + 1;
         end
+        if (x(i) > bestx)
+            bestx = x(i);
+            bestn = n;
+            bestj = j;
+        end
         i = i + 1;
     end
     
-    if (x(n,m) > bestx)
-        bestx = x(n, m);
-        bestn = n;
-        bestm = m;
-    end
+    
 
     end
 end
