@@ -68,7 +68,7 @@ for n = 1:length(theta)
 
 
     num = m*v2^2 - 2*m*g*h2 - C*p*A*v2^2*(h2/sind(theta2(m))) ...
-        - 2*mu*m*g*cosd(theta(n))*(h2./sind(theta(n)));
+        - 2*mu*m*g*cosd(theta2(m))*(h2./sind(theta2(m)));
 
     v3 = sqrt(num/m);
 
@@ -93,21 +93,21 @@ for n = 1:length(theta)
     x(n, m) = x0;
     y = zeros(N,N);
     y(n,m) = y0;
-    vx = zeros(N,N); 
-    vx(n,m) = vx0;
-    vy = zeros(N,N); 
-    vy(n,m) = vy0;
+    vx = zeros(N); 
+    vx(1) = vx0;
+    vy = zeros(N); 
+    vy(1) = vy0;
 
     i = 1;
     j = 1;
 
     while i < N
-        ax = -(D./m).*v3*vx(i);
-        vx(i+1, i+1) = vx(i+1,i+1) + ax.*dt;
-        x(i+1,i+1) = x(i,i) + vx(i,i).*dt + 0.5.*ax.*dt.^2;
-        ay = -g - ((D./m).*v3*vy(i,i));
-        vy(i+1,i+1) = vy(i,i) + ay.*dt;
-        y(i+1,i+1) = y(i,i) + vy(i,i).*dt + 0.5.*ay.*dt.^2;
+        ax = -(D/m)*v3*vx(i);
+        vx(i+1) = vx(i) + ax.*dt;
+        x(i+1) = x(i,i) + vx(i).*dt + 0.5.*ax.*dt.^2;
+        ay = -g - ((D/m)*v3*vy(i));
+        vy(i+1) = vy(i) + ay.*dt;
+        y(i+1,i+1) = y(i) + vy(i).*dt + 0.5.*ay.*dt.^2;
 
         if y(i+1, i+1) < 0 
              i = N;
@@ -116,6 +116,7 @@ for n = 1:length(theta)
              i = i + 1;
              j = j + 1;
         end
+        i = i + 1;
     end
     
     if (x(n,m) > bestx)
@@ -130,5 +131,3 @@ end
 
 best_theta = theta(bestn); 
 best_theta2 = theta2(bestm);
-    
-    
