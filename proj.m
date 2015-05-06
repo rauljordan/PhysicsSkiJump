@@ -163,21 +163,7 @@ fprintf('The best value for theta is%7.3f and for theta2 is%7.3f\n',...
 % Now we obtain the value of d matching the bestx we found from our
 % looping. From our model, we see that d can be expressed as 
 % cosd(theta) = bestx/d so d = bestx / cosd(theta)
-best_d = bestx / cosd(best_theta);
-fprintf('The value of d is%7.3f\n', best_d);
+d = bestx / cosd(best_theta);
+fprintf('The value of d is%7.3f\n', d);
 
-figure;
-grid on;
 plot(x,y);
-title('Trajectory After Take-Off');
-xlabel('x position');
-ylabel('y position');
-
-figure;
-hold on;
-plot(theta,vx);
-plot(theta2,vx);
-legend('theta 1','theta 2');
-title('Horizontal Velocity vs. Theta Values');
-xlabel('Theta in Degrees');
-ylabel('Velocity in m/s');
