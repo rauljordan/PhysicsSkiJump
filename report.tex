@@ -55,19 +55,6 @@ In part II, the skier extends to his full height, $1.8$m , when in the air
 We assumed that the skier’s mass was $70$ kg
 
 
-%\begin{figure}[t]
-%\centering
-%\includegraphics[width=30pc]{mouse}
-%\caption{(a) Diagram of the experimental set up. (b) Detail of the test object used.}
-%\label{fig_env1}
-%\end{figure}
-
-%\begin{figure}[t]
-%\centering%
-%\includegraphics[width=21pc]{mouse}
-%\caption{Lasing was obtained in the 46.9 nm 3s 1P1 – 3p 1S0  transition of neon-like Ar by exciting Ar filled alumina capillaries 3.2 mm in diameter with a current pulse having an amplitude Lasing was obtained in the 46.9 nm 3s 1P1 – 3p 1S0  transition of neon-like Ar by exciting Ar filled alumina capillaries 3.2 mm in diameter with a current pulse having an amplitude}
-%\label{fig_env2}\vspace*{-6pt}
-%\end{figure}
 
 \section{Procedure}
 
@@ -120,19 +107,44 @@ Having run the MATLAB code to determine the best $\theta_1$ and $\theta_2$ of th
 
 Placing the model equations derived into the MATLAB and using a for-loop and evolver from HW7 to find the best value of our system, we found the best angles for our ski jump design and the resulting distance that the skier is able to reach. The ideal angle for the mountain would be $31.414$ degrees; the ideal angle for the ramp would be $11.414$ degrees. Having angles greater than the ideal ones would result in a decrease in velocity for the ski jumper (as represented in Graph 1), thus directly correlating with a decrease in distance traveled. Utilizing such a ski jump design and considering the assumptions we made, the skier would be able to travel $68.964$ m from take-off at the end of the ramp. The angles determined through our final project falls within the range of those deemed the best by International Ski Federation; thus, this indicates that we were able to successfully create a model that gave realistic angles for the design. Furthermore, the International Ski Federation calculated that the velocity leaving the ramp would have to be $17.5 m/s$ (Gasser 18); the take-off velocity that our model gave us was $16.0368 m/s$; therefore, our model is consistent with actual ski jumps. Thus, in general, our application of knowledge concerning kinematics and dynamics was successful and we were able to use MATLAB to design a ski jump that would maximize the distance traveled by the skier.
 
+\section{Acknowledgements}
+We would like to thank Professor Kaxiras Nils and Joon for their immense help this semester. 
 
-\section*{Acknowledgements}
-The authors wish to thank the anonymous reviewers for their valuable suggestions.  
 
-%% \ackrule
+\section{References}
+Gasser, Hans-Heini (2012). “Standards for the construction of jumping hills - 2012.” Federation internationale du ski. Oberhofen: FIS.
+\\
+Müller, Wolfram (2005). “The physics of ski jumping.” Proceedings of European School of High-Energy Physics. Geneva: CERN. pp. 269–278.
 
-\section*{Biographies}
 
-\textbf{P. W. Wachulak} received the degree${\ldots}$ \\[6pt]
-\textbf{M. C. Marconi} received the degree${\ldots}$ \\[6pt]
-\textbf{R. A. Bartels} received the degree${\ldots}$ \\[6pt]
-\textbf{C. S. Menoni} received the degree${\ldots}$ \\[6pt]
-\textbf{J. J. Rocca} received the degree${\ldots}$
+
+\begin{figure}
+\centering%
+\includegraphics[width=21pc]{ramp}
+\caption{This is the diagram we used to write our model equations. Here: $v_initial$ is the velocity that the ski jumper begins with at the top of the mountain; $v1$ is the velocity at the end of the jumper’s downward descent down the mountain ramp; $v2$ is the velocity of the jumper at the apex of the ramp; $v3$ is the take-off velocity of the jumper; $h1$ is the height of the ski jumper before his descent in relation to the horizontal; $h2$ is the height of the ski jumper at the point of his take-off in relation to the horizontal; $x_max$ is the maximum distance he travels in the x-direction; D is the maximum distance that the ski jumper travels in general after take-off; 1 is the angle of the mountain; and 2 is the angle of the ramp.}
+\label{fig1}
+\end{figure}
+
+\begin{figure}
+\centering%
+\includegraphics[width=21pc]{force}
+\caption{Force diagrams for the ski jumper at different points in his jump.}
+\label{fig2}
+\end{figure}
+
+\begin{figure}
+\centering%
+\includegraphics[width=21pc]{graph1}
+\caption{ Horizontal Velocity vs. Theta Velocities}
+\label{fig3}
+\end{figure}
+
+\begin{figure}
+\centering%
+\includegraphics[width=21pc]{graph2}
+\caption{ The trajectory of the ski jumper in our best fit model after take-off }
+\label{fig4}
+\end{figure}
 
 
 

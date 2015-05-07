@@ -1,10 +1,9 @@
-% Deven Hurt, Raul Jordan, Ha Le, Maille Radford
-% Final Project
+%% Deven Hurt, Raul Jordan, Ha Le, Maille Radford, PS12a Final Project
+
+%% Part 1a
 close all
 clear all
 clc
-%% Part 1a
-
 % First we define all the constants necessary for our calculations. 
 % Here C = Coefficient of Drag of a ski jumper
 % L = height of a person divided by two due to crouching
@@ -71,12 +70,12 @@ for n = 1:length(theta)
     
     % We obtain the length of the parabola by integrating and incorporate
     % this in our second velocity calculation
-    L_other = integral(fun, 0, h2/tan(theta(n)));
+    L_par = integral(fun, 0, h2/tan(theta(n)));
 
     % We incorporate this length in our other velocity calculation which we
     % find using conservation of energy as explained in our model
     v2 = sqrt((2*m*g*h2 - 2*mu*m*g*cosd(theta(n))*...
-        abs(L_other))./(m+p*A*C*L_other)) + v1;
+        abs(L_par))./(m+p*A*C*L_par)) + v1;
 
     %% Part 1 c
 
